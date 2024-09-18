@@ -1,4 +1,4 @@
-from typing import Iterator, Generator
+from typing import Generator
 
 transactions =(
     [
@@ -86,9 +86,9 @@ def filter_by_currency(transactions, currency) -> Generator:
         if transaction["operationAmount"]["currency"]["code"] == currency:
             yield transaction
 
-usd_transactions = filter_by_currency(transactions, "USD")
-for transaction in range(5):
-    print(next(usd_transactions))
+    #usd_transactions = filter_by_currency(transactions, "USD")
+    #for transaction in range(5):
+        #print(next(usd_transactions))
 
 
 def transaction_descriptions(transactions):
@@ -102,7 +102,7 @@ for description in transaction_descriptions(transactions):
     else:
         print('[]')
 
-def card_number_generator(start: int, end: int) -> str:
+def card_number_generator(start, end):
     """Функция генерирует номера карт"""
     for number in range(start, end + 1):
         card_number = str(number)
