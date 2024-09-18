@@ -1,5 +1,3 @@
-from typing import AnyStr
-
 import pytest
 
 from src.generators import (
