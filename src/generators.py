@@ -86,9 +86,9 @@ def filter_by_currency(transactions, currency) -> Generator:
         if transaction["operationAmount"]["currency"]["code"] == currency:
             yield transaction
 
-# usd_transactions = filter_by_currency(transactions, "USD")
-# for transaction in range(5):
-    #print(next(usd_transactions))
+usd_transactions = filter_by_currency(transactions, "USD")
+for transaction in range(5):
+    print(next(usd_transactions))
 
 def transaction_descriptions(transactions):
     """Генератор, который выводит описание каждой операции по очереди"""
