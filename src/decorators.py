@@ -1,9 +1,7 @@
-from typing import Any
 
-
-def log(filename=""):
-    """Декоратор с созданием лог-файла"""
-    def decorator(func:Any):
+def log(filename="log.txt"):
+    """Декоратор Log, регистрирующий детали выполнения функции."""
+    def decorator(func):
         def wrapper(*args, **kwargs):
             try:
                 result = func(*args, **kwargs)
@@ -21,14 +19,15 @@ def log(filename=""):
                     print(f"{func.__name__} error: {e.__class__.__name__}. Inputs: {args}, {kwargs}")
 
         return wrapper
+
     return decorator
 
 
-@log
-def func (x, y):
+@log()
+def function (x, y):
     return x + y
 
 
-func (1, 2)
+function (1, 2)
 
 
