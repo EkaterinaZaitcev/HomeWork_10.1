@@ -126,3 +126,20 @@ def usd_transaction():
             "to": "Visa Platinum 8990922113665229",
         },
     ]
+
+
+@pytest.fixture
+def my_code() -> str:
+    return "USD"
+
+@pytest.fixture
+def my_code_rub() -> str:
+    return 'RUB'
+
+@pytest.fixture
+def my_code_error():
+    raise KeyError("Test error")
+
+@pytest.fixture
+def cities():
+    return ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Philadelphia']

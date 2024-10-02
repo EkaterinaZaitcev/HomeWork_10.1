@@ -9,7 +9,7 @@ def test_function_success(x, y):
 
 # Тестовая функция для генерации исключения
 @log()
-def test_function_error(x, y):
+def test_function_error():
     raise ValueError("Test error")
 
 

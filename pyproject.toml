@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 pytest = "^8.3.3"
 transaction = "^4.0"
+python-dotenv = "^1.0.1"
 
 
 [tool.poetry.group.lint.dependencies]

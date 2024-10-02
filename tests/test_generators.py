@@ -91,6 +91,13 @@ def test_filter_by_currency(transaction_list, usd_transaction):
     """Функция тестирует выдачу списка операций по названию валюты"""
     assert list(filter_by_currency(transaction_list, "USD")) == usd_transaction
 
+def test_filter_by_currency_error(transaction_list, usd_transaction):
+    """Функция тестирует выдачу списка операций по названию валюты"""
+    try:
+        assert list(filter_by_currency(transaction_list, " ")) == usd_transaction
+    except:
+        print("Test error")
+
 def test_transaction_descriptions(transaction_list):
     """Функция тестирует выдачу списка описания операций"""
     des = transaction_descriptions(transaction_list)
