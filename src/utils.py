@@ -1,8 +1,7 @@
 import json
-import os
+
 from json import JSONDecodeError
-from src.external_api import currency_conversion
-from typing import Any
+
 
 """ Реализуйте функцию, которая принимает на вход путь до JSON-файла и
 возвращает список словарей с данными о финансовых транзакциях.
@@ -27,14 +26,3 @@ def financial_transactions ():
 
 print(financial_transactions())
 
-
-"""def transactions_amount(transaction: dict, currency: str = "RUB") -> Any:
-    Функция принимает на вход транзакцию и возвращает сумму транзакции в рублях
-    if transaction["operationAmount"]["currency"]["code"] == currency:
-        amount = transaction["operationAmount"]["amount"]
-    else:
-        amount = currency_conversion(transaction)
-    return amount
-
-
-print(transactions_amount())"""

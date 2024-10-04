@@ -1,11 +1,11 @@
 import json
-from unittest.mock import patch
+from unittest.mock import patch, mock_open
 
 from src.utils import financial_transactions
 
 
 @patch("builtins.open")
-def test_transactions_amount_json(mock_open):
+def test_financial_transactions_json(mock_open):
     mock_file = mock_open.return_value.__enter__.return_value
 
     # Проверка на удачный результат.
