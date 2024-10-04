@@ -3,12 +3,7 @@ import json
 from json import JSONDecodeError
 
 
-""" Реализуйте функцию, которая принимает на вход путь до JSON-файла и
-возвращает список словарей с данными о финансовых транзакциях.
-Если файл пустой, содержит не список или не найден, функция
-возвращает пустой список. """
-
-def financial_transactions ():
+def financial_transactions (file_json: str) -> list[dict]:
     """ Функция принимает на вход путь
     до JSON-файла и возвращает список словарей с данными о финансовых транзакциях. """
     try:
@@ -23,6 +18,5 @@ def financial_transactions ():
     except FileNotFoundError:
         return []
 
-
-print(financial_transactions())
+print(financial_transactions("../data/operations.json"))
 
