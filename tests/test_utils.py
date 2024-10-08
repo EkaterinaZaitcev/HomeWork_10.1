@@ -1,7 +1,8 @@
 import json
-from unittest.mock import patch
 
+from unittest.mock import patch
 from src.utils import financial_transactions
+
 
 
 @patch("builtins.open")
@@ -23,3 +24,4 @@ def test_financial_transactions_json(mock_open):
     # Проверка на пустой файл.
     mock_file.read.return_value = ""
     assert financial_transactions("test.json") == []
+
