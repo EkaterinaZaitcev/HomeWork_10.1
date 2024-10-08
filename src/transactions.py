@@ -10,3 +10,4 @@ def filter_by_currency(currency):
     for transaction in data:
         if transaction["currency"] == currency:
             yield transaction
+
