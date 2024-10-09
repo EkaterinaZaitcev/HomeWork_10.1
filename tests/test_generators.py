@@ -6,7 +6,7 @@ from src.generators import (
     card_number_generator,
 )
 
-transactions =(
+transactions = (
     [
         {
             "id": 939719570,
@@ -91,12 +91,14 @@ def test_filter_by_currency(transaction_list, usd_transaction):
     """Функция тестирует выдачу списка операций по названию валюты"""
     assert list(filter_by_currency(transaction_list, "USD")) == usd_transaction
 
+
 def test_filter_by_currency_error(transaction_list, usd_transaction):
     """Функция тестирует выдачу списка операций по названию валюты"""
     try:
         assert list(filter_by_currency(transaction_list, " ")) == usd_transaction
-    except:
+    except AssertionError:
         print("Test error")
+
 
 def test_transaction_descriptions(transaction_list):
     """Функция тестирует выдачу списка описания операций"""

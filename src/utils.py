@@ -13,7 +13,7 @@ logging.basicConfig(
 logger = logging.getLogger("utils")
 
 
-def financial_transactions (file_json: str) -> list[dict]:
+def financial_transactions(file_json: str) -> list[dict]:
     """ Функция принимает на вход путь
     до JSON-файла и возвращает список словарей с данными о финансовых транзакциях. """
     try:
@@ -33,5 +33,5 @@ def financial_transactions (file_json: str) -> list[dict]:
         logger.error("Файл не найден")
         return []
 
-print(financial_transactions("../data/operations.json"))
 
+print(financial_transactions("../data/operations.json"))

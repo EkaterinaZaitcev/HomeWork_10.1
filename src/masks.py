@@ -7,8 +7,9 @@ logging.basicConfig(level=logging.DEBUG,
                     filename='../logs/mask.log',
                     filemode='w')
 
-
 logger = logging.getLogger("mask")
+
+
 def get_masks_card_number(card_number: Union[str]) -> Union[str]:
     """Функция принятия номера карты и возврат в виде маски"""
     card_n = str(card_number)

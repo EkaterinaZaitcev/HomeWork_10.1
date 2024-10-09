@@ -39,8 +39,7 @@ def test_log_to_file(tmpdir):
     @log(filename=str(log_file))
     def test_function_file_error(x, y):
         raise ValueError("Test error")
-
-    #Проверка вывода в файл правильную работу функции
+    """Проверка вывода в файл правильную работу функции"""
     test_function_file_success(1, 2)
 
     with open(str(log_file), 'r') as f:
@@ -48,7 +47,7 @@ def test_log_to_file(tmpdir):
 
     assert "test_function_file_success ok" in log_content
 
-    # Проверка вывода в файл ошибочную работу функции
+    """Проверка вывода в файл ошибочную работу функции"""
     test_function_file_error(1, 2)
 
     with open(str(log_file), 'r') as f:
