@@ -4,7 +4,6 @@ from unittest.mock import patch
 from src.utils import financial_transactions
 
 
-
 @patch("builtins.open")
 def test_financial_transactions_json(mock_open):
     mock_file = mock_open.return_value.__enter__.return_value

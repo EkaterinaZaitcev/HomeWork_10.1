@@ -2,11 +2,14 @@ import pytest
 
 from src.widget import get_date, mask_account_card
 
+
 def test_get_date(test_get_date_fix):
     assert get_date(test_get_date_fix) == "11.03.2024"
 
+
 def test_mask_account_card(test_mask_account_card_fix):
     assert mask_account_card(test_mask_account_card_fix) == "Счет **9589"
+
 
 @pytest.mark.parametrize('nums, mask', [
     ('Maestro 1596837868705199', 'Maestro 1596 83** **** 5199'),
@@ -18,4 +21,3 @@ def test_mask_account_card(test_mask_account_card_fix):
 ])
 def test_mask_account_card(nums, mask):
     assert mask_account_card(nums) == mask
-

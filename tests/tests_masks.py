@@ -1,8 +1,6 @@
-import pytest
-
-
 from src.masks import get_masks_card_number
 from src.masks import get_mask_account
+
 
 def test_masks_card_number():
     """Тестирование маскировки номера карты"""
