@@ -24,7 +24,7 @@ def log(filename="log.txt"):
 
 
 @log()
-def function(x, y):
+def function(x : int, y : int) -> int:
     return x + y
 
 

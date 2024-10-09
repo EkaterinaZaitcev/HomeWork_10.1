@@ -1,39 +1,21 @@
 import pandas as pd
 
 
-def get_data_for_excel(file_name: str) -> list[dict]:
+def get_data_from_excel(file_name: str) -> list[dict]:
     """Функция чтения файлов excel"""
-    try:
-        excel_data = pd.read_excel(file_name)
-        data_list = excel_data.apply(
-            lambda row: {
-                "id": row["id"],
-                "state": row["state"],
-                "date": row["date"],
-                "operationAmount": {
-                    "amount": row["amount"],
-                    "currency": {
-                        "name": row["currency_name"],
-                        "code": row["currency_code"],
-                    },
-                },
-                "description": row["description"],
-                "from": row["from"],
-                "to": row["to"],
-            },
-            axis=1,
-        )
-        new_dict=[]
-        row_index = 0
-        for row in data_list:
-            new_dict.append(data_list[row_index])
-            row_index += 1
-        return new_dict
-    except Exception:
-        return [{}]
-
+    with open(file_name, 'r', encoding='utf-8'):
+        reader = pd.read_excel(file_name)
+        header = pd.DataFrame(reader, columns=['id', 'state', 'data', 'amount', 'currency_name',
+                                               'currency_code', 'from', 'to', 'description'])
+        result = header.to_dict('records')
+    return result
 
 
 if __name__ == "__main__":
-    result = get_data_for_excel("../data/transactions_excel.xlsx")
-    print(result)
+    transactions_excel = get_data_from_excel("../data/transactions_excel.xlsx")
+    if transactions_excel:
+        print("\nСписок транзакций из XLSX-файла:")
+        for transaction in transactions_excel:
+            print(transaction)
+    else:
+        print("Ошибка при чтении XLSX-файла.")
