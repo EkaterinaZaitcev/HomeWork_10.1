@@ -2,6 +2,7 @@ import csv
 
 
 def get_data_from_csv(file_name: str) -> list[dict]:
+    """ Функция чтения csv файла"""
     with open(file_name, "r", encoding="utf8") as file:
         reader = csv.reader(file, delimiter=";")
         header = next(reader)
