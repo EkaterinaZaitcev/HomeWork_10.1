@@ -2,8 +2,8 @@ import os
 
 import pytest
 from unittest.mock import patch
-from src.open_csv import get_data_from_csv
-from src.open_excel import get_data_from_excel
+from src.utils import get_data_from_csv, get_data_from_excel
+
 
 @patch("pandas.read_csv")
 def test_get_data_from_csv(mock_read_csv):
