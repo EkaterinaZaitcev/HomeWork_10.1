@@ -24,6 +24,6 @@ def sorting_transactions(search_string: str) -> List[Dict]:
                            if re.findall(pattern, transaction["description"], flags=re.IGNORECASE)]
     return result_transactions
 
-if __name__ == "__mane__":
+"""if __name__ == "__mane__":
     result = sorting_transactions()
-    print(result)
+    print(result)"""

@@ -17,7 +17,7 @@ def filter_by_state(states: list[dict[str, Any]], state_id: str = "EXECUTED") ->
     return states_list
 
 
-print(filter_by_state(states_dict))
+#print(filter_by_state(states_dict))
 
 
 def sort_by_date(states_list: list[dict[str, Any]], revers: bool = True) -> list[dict[str, Any]]:
@@ -26,4 +26,4 @@ def sort_by_date(states_list: list[dict[str, Any]], revers: bool = True) -> list
     return sorted_list
 
 
-print(sort_by_date(states_dict))
+#print(sort_by_date(states_dict))
