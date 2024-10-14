@@ -6,7 +6,8 @@ import pandas as pd
 from src.processing import sort_by_date, filter_by_state
 from src.utils import financial_transactions, get_data_from_csv, get_data_from_excel
 from src.transactions import filter_by_currency
-from src.masks import get_masks_card_number, get_mask_account
+from src.masks import get_masks_card_number
+from src.widget import mask_account_card
 from src.filter import str_sort
 
 PATH_TO_FILE_JSON = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "operations.json")
@@ -15,7 +16,7 @@ PATH_TO_FILE_EXCEL = os.path.join(os.path.dirname(os.path.dirname(__file__)), "d
 
 
 def main(transactions=None):
-    """Main function of the Project."""
+    """Функция запуска проекта"""
 
     while True:
         menu_item = input(
@@ -30,15 +31,15 @@ def main(transactions=None):
         if menu_item == "1":
             print("Для обработки выбран JSON-файл.")
             transactions = financial_transactions(PATH_TO_FILE_JSON)
-            break
+            #break
         elif menu_item == "2":
             print("Для обработки выбран CSV-файл.")
             transactions = get_data_from_csv(PATH_TO_FILE_CSV)
-            break
+            #break
         elif menu_item == "3":
             print("Для обработки выбран XLSX-файл.")
             transactions = get_data_from_excel(PATH_TO_FILE_EXCEL)
-            break
+            #break
         else:
             print("Такого пункта в меню нет, попробуйте еще раз.")
 
@@ -68,17 +69,13 @@ def main(transactions=None):
 
         filter_by_rub = input("Выводить только рублевые транзакции? Да/Нет ")
         if filter_by_rub.lower() == "да":
-            rub_transactions = filter_by_currency(filtered_transactions, "RUB")
+            rub_transactions = filter_by_currency(transactions, "RUB")
             filtered_transactions = list(rub_transactions)[:-1]
 
         filter_by_word = input("Программа: Отфильтровать список транзакций по определенному слову в описании? Да/Нет ")
         if filter_by_word.lower() == "да":
             word = input("Введите слово: ")
             filtered_transactions = str_sort(filtered_transactions, word)
-        #     for operation in filtered_transactions:
-        #         if re.search(word, operation.get("description", "")):
-        #             found_operations.append(operation)
-        #             filtered_transactions = filter_by_rub(filtered_transactions, word)
 
         print("Распечатываю итоговый список транзакций...")
         if len(filtered_transactions) == 0:
@@ -86,7 +83,7 @@ def main(transactions=None):
         else:
             print(f"Всего банковских операций в выборке: {len(filtered_transactions)}")
             for tr in filtered_transactions:
-                tr_date = get_mask_account(tr["date"])
+                tr_date = get_masks_card_number(tr["date"])
                 currency = tr["operationAmount"]["currency"]["name"]
                 if tr["description"] == "Открытие вклада":
                     from_to = get_masks_card_number(tr["to"])
@@ -101,5 +98,5 @@ def main(transactions=None):
         """
                 )
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()

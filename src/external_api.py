@@ -27,6 +27,7 @@ def currency_conversion(transaction: dict, response=None) -> float:
         raise ValueError(f"Неизвестная валюта {currency}.")
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     transaction_convert = {"amount": 50, "currency": "USD"}
     print(f"Сумма в рублях (USD): {currency_conversion(transaction_convert)}")
+"""

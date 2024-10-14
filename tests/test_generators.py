@@ -6,7 +6,7 @@ from src.generators import (
     card_number_generator,
 )
 
-transactions = (
+data = (
     [
         {
             "id": 939719570,
