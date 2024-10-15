@@ -1,13 +1,9 @@
 import os
-import re
-
-import pandas as pd
 
 from src.processing import sort_by_date, filter_by_state
 from src.utils import financial_transactions, get_data_from_csv, get_data_from_excel
 from src.transactions import filter_by_currency
 from src.masks import get_masks_card_number
-from src.widget import mask_account_card
 from src.filter import str_sort
 
 PATH_TO_FILE_JSON = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "operations.json")
@@ -31,15 +27,15 @@ def main(transactions=None):
         if menu_item == "1":
             print("Для обработки выбран JSON-файл.")
             transactions = financial_transactions(PATH_TO_FILE_JSON)
-            #break
+            # break
         elif menu_item == "2":
             print("Для обработки выбран CSV-файл.")
             transactions = get_data_from_csv(PATH_TO_FILE_CSV)
-            #break
+            # break
         elif menu_item == "3":
             print("Для обработки выбран XLSX-файл.")
             transactions = get_data_from_excel(PATH_TO_FILE_EXCEL)
-            #break
+            # break
         else:
             print("Такого пункта в меню нет, попробуйте еще раз.")
 
@@ -80,6 +76,7 @@ def main(transactions=None):
         print("Распечатываю итоговый список транзакций...")
         if len(filtered_transactions) == 0:
             print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
+            break
         else:
             print(f"Всего банковских операций в выборке: {len(filtered_transactions)}")
             for tr in filtered_transactions:
@@ -97,6 +94,7 @@ def main(transactions=None):
         Сумма: {round(float(amount))} {currency}
         """
                 )
+
 
 if __name__ == "__main__":
     main()
