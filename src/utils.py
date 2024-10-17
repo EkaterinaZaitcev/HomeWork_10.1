@@ -36,7 +36,7 @@ def financial_transactions(file_json: str) -> list[dict]:
         return []
 
 
-#print(financial_transactions("../data/operations.json"))
+# print(financial_transactions("../data/operations.json"))
 
 
 def get_data_from_csv(file_name: str) -> list[dict]:

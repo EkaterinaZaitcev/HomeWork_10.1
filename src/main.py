@@ -1,10 +1,12 @@
 import os
+from typing import Counter
 
+from src.masks import get_masks_card_number, get_mask_account
 from src.processing import sort_by_date, filter_by_state
 from src.utils import financial_transactions, get_data_from_csv, get_data_from_excel
 from src.transactions import filter_by_currency
-from src.masks import get_masks_card_number
 from src.filter import str_sort
+from src.widget import get_date, mask_account_card
 
 PATH_TO_FILE_JSON = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "operations.json")
 PATH_TO_FILE_CSV = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "transactions.csv")
@@ -74,18 +76,18 @@ def main(transactions=None):
             filtered_transactions = str_sort(filtered_transactions, word)
 
         print("Распечатываю итоговый список транзакций...")
-        if len(filtered_transactions) == 0:
+        if Counter[filtered_transactions] == 0:
             print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
             break
         else:
             print(f"Всего банковских операций в выборке: {len(filtered_transactions)}")
             for tr in filtered_transactions:
-                tr_date = get_masks_card_number(tr["date"])
+                tr_date = get_date(tr["date"])
                 currency = tr["operationAmount"]["currency"]["name"]
                 if tr["description"] == "Открытие вклада":
-                    from_to = get_masks_card_number(tr["to"])
+                    from_to = mask_account_card(tr["to"])
                 else:
-                    from_to = get_masks_card_number(tr["from"]) + " -> " + get_masks_card_number(tr["to"])
+                    from_to = mask_account_card(tr["from"]) + " -> " + mask_account_card(tr["to"])
 
                 amount = tr["operationAmount"]["amount"]
                 print(
